@@ -2,6 +2,15 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+// Root - redirect based on auth status
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login');
+});
 
 // Area Guest
 Route::middleware('guest')->group(function () {

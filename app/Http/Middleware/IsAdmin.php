@@ -14,13 +14,14 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Cek: Sudah login DAN role-nya admin
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            return $next($request); // Silahkan lewat
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        // Kalau bukan admin, tendang ke halaman dashboard user biasa
-        // Atau bisa juga abort(403) untuk 'Forbidden'
-        return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses Admin.');
+        if (Auth::user()->role === 'admin') {
+            return $next($request);
+        }
+
+        abort(403, 'Unauthorized.');
     }
 }

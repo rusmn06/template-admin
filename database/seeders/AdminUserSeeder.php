@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'admin@gmail.com'], // Kunci pencarian
             [
                 'name' => 'Administrator',
-                'password' => 'password', // Akan otomatis hashed oleh cast di Model
+                'password' => Hash::make('password'),
                 'role' => 'admin',
             ]
         );
