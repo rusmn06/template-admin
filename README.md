@@ -1,82 +1,198 @@
-# 🛠️ Laravel Admin Template
+<div align="center">
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="300" alt="Laravel Logo">
+  
+  <h1 align="center" style="font-size: 2.5rem; margin-top: 0.5rem;">Laravel Admin Template</h1>
+  
+  <p align="center">
+    <strong>Admin panel starter kit berbasis Laravel 12 + SB Admin 2</strong>
+    <br>
+    Build cepat untuk sistem admin, dashboard, atau back-office aplikasi web.
+  </p>
 
-Template dasar admin panel berbasis **Laravel 12** dengan Tailwind CSS v4 dan Vite. Cocok sebagai titik awal untuk membangun sistem admin, dashboard, atau back-office aplikasi web.
+  <!-- Badges -->
+  <p>
+    <img src="https://img.shields.io/badge/Laravel-12.x-F9322C?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12">
+    <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+">
+    <img src="https://img.shields.io/badge/SB_Admin_2-✓-4e73df?style=for-the-badge&logo=bootstrap&logoColor=white" alt="SB Admin 2">
+    <img src="https://img.shields.io/badge/Chart.js-✓-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js">
+    <br>
+    <img src="https://img.shields.io/github/license/laravel/laravel?style=flat-square&color=blue" alt="MIT License">
+    <img src="https://img.shields.io/badge/MySQL|PostgreSQL|SQLite-supported-47A248?style=flat-square" alt="DB Support">
+    <img src="https://img.shields.io/badge/role--based_access-✓-success?style=flat-square" alt="Role-based access">
+    <img src="https://img.shields.io/badge/password--reset-✓-informational?style=flat-square" alt="Password Reset">
+  </p>
+</div>
 
 ---
 
-## 📋 Persyaratan Sistem
+## 📋 Table of Contents
 
-| Kebutuhan | Versi Minimum |
-|-----------|---------------|
-| PHP | 8.2+ |
-| Composer | 2.x |
-| Node.js | 18+ |
-| npm | 9+ |
-| Database | MySQL 8 / PostgreSQL 14 / SQLite |
+- [✨ Features](#-features)
+- [📦 Requirements](#-requirements)
+- [🚀 Quick Start](#-quick-start)
+- [🔐 Default Admin Account](#-default-admin-account)
+- [📁 Project Structure](#-project-structure)
+- [🧩 Tech Stack](#-tech-stack)
+- [🛠️ Built-in Commands](#️-built-in-commands)
+- [👥 User Roles](#-user-roles)
+- [🌐 Routes Overview](#-routes-overview)
+- [🧪 Testing](#-testing)
+- [📄 License](#-license)
 
 ---
 
-## 🚀 Instalasi
+## ✨ Features
 
-### 1. Clone & Install Dependencies
+| Feature | Status |
+|---------|--------|
+| 🔐 **Login & Register** | ✅ Built-in |
+| 🔑 **Password Reset** (via email) | ✅ Built-in |
+| 👤 **Role-based Access** (Admin / User) | ✅ Built-in |
+| 🛡️ **Admin Middleware** (`auth`, `admin`) | ✅ Configured |
+| 📊 **Admin Dashboard** with stats cards | ✅ SB Admin 2 |
+| 🔍 **Topbar Search** | ✅ Included |
+| 🔔 **Notifications & Alerts UI** | ✅ Included |
+| 📈 **Charts** (Chart.js) | ✅ Included |
+| 👥 **User Management** (seeders) | ✅ Ready |
+| 💾 **Database Agnostic** (SQLite / MySQL / PostgreSQL) | ✅ Supported |
+| 🎨 **Custom Fonts** (Davigo Pro + San Francisco Mono) | ✅ Loaded |
+
+---
+
+## 📦 Requirements
+
+| Dependency | Version |
+|------------|---------|
+| PHP | ^8.2 |
+| Composer | ^2.x |
+| Database | SQLite / MySQL 8+ / PostgreSQL 14+ |
+
+> Node.js / npm is **not required** — this template uses pre-built assets (SB Admin 2).
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone & Install
 
 ```bash
-git clone <repo-url> nama-project
-cd nama-project
-
+git clone <repo-url> my-admin
+cd my-admin
 composer install
-npm install
 ```
 
-### 2. Konfigurasi Environment
+### 2️⃣ Environment Setup
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Edit file `.env`, sesuaikan koneksi database:
+Edit `.env` to match your database. Default uses SQLite (zero config):
 
 ```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=nama_database
-DB_USERNAME=root
-DB_PASSWORD=
+DB_CONNECTION=sqlite
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=my_database
+# DB_USERNAME=root
+# DB_PASSWORD=
 ```
 
-### 3. Migrasi Database
+### 3️⃣ Migrate & Seed
 
 ```bash
 php artisan migrate
+php artisan db:seed --class=AdminUserSeeder
 ```
 
-### 4. Jalankan Development Server
+### 4️⃣ Run the Server
 
 ```bash
-# Jalankan semua sekaligus (server + queue + logs + vite)
-composer run dev
-```
-
-Atau secara terpisah:
-
-```bash
-# Terminal 1 - Backend
 php artisan serve
-
-# Terminal 2 - Frontend
-npm run dev
 ```
 
-Akses aplikasi di: **http://localhost:8000**
+Akses aplikasi di **http://localhost:8000**
+
+> Untuk development full-stack (server + queue + logs) jalankan `composer run dev`.
 
 ---
 
-## 🏗️ Build untuk Production
+## 🔐 Default Admin Account
+
+Setelah menjalankan seeder, akun admin default:
+
+| Field | Value |
+|-------|-------|
+| **Email** | `admin@gmail.com` |
+| **Password** | `password` |
+| **Role** | `admin` |
+
+---
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.php    # Auth logic (login, register, reset)
+│   │   │   └── Controller.php        # Base controller
+│   │   └── Middleware/
+│   │       └── IsAdmin.php           # Admin role middleware
+│   └── Models/
+│       └── User.php                  # User model with role enum
+├── bootstrap/
+│   └── app.php                       # Middleware registration
+├── config/                           # App configuration
+├── database/
+│   ├── migrations/                   # Users, cache, jobs tables
+│   └── seeders/
+│       ├── AdminUserSeeder.php       # Default admin seed
+│       └── DatabaseSeeder.php
+├── public/
+│   ├── assets/sb-admin-2/            # Pre-built SB Admin 2 assets
+│   ├── css/custom.css                # Custom fonts & theme overrides
+│   └── fonts/                        # Davigo Pro & SF Mono fonts
+├── resources/views/
+│   ├── admin/dashboard.blade.php     # Admin dashboard
+│   ├── user/dashboard.blade.php      # User dashboard
+│   ├── auth/                         # Login, register, password views
+│   ├── layouts/                      # App layout (SB Admin 2 shell)
+│   └── partials/                     # Sidebar, topbar, footer
+└── routes/
+    └── web.php                       # All route definitions
+```
+
+---
+
+## 🧩 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [Laravel 12](https://laravel.com) | PHP Framework |
+| [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2) | Admin UI Theme (Bootstrap 4) |
+| [Chart.js](https://www.chartjs.org) | Dashboard Charts |
+| [Font Awesome](https://fontawesome.com) | Icons |
+| Davigo Pro + San Francisco Mono | Custom Fonts |
+| SQLite / MySQL / PostgreSQL | Database |
+
+---
+
+## 🛠️ Built-in Commands
 
 ```bash
-npm run build
+# Run full dev stack (server + queue + logs)
+composer run dev
+
+# Run tests
+php artisan test
+
+# Seed admin user
+php artisan db:seed --class=AdminUserSeeder
+
+# Cache for production
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
@@ -84,251 +200,54 @@ php artisan view:cache
 
 ---
 
-## 📦 Rekomendasi Package Tambahan
+## 👥 User Roles
 
-Template ini adalah skeleton kosong. Berikut rekomendasi untuk membangun admin panel yang lengkap:
+This template implements a simple role-based access system using an `enum` column on the `users` table:
 
----
+- **`admin`** — Full access to `/admin/dashboard` and admin features
+- **`user`** — Limited access to user dashboard only
 
-### 🔐 Autentikasi
-
-#### Opsi A — Laravel Jetstream (Direkomendasikan untuk Admin)
-
-Jetstream menyediakan autentikasi lengkap dengan fitur teams, two-factor authentication (2FA), dan manajemen sesi.
-
-```bash
-composer require laravel/jetstream
-
-# Pilih stack: Livewire (Blade) atau Inertia (Vue/React)
-php artisan jetstream:install livewire --teams
-
-npm install && npm run build
-php artisan migrate
-```
-
-Fitur yang didapat:
-- Login, Register, Logout
-- Two-Factor Authentication (2FA)
-- Manajemen profil & foto
-- Manajemen API token (Sanctum)
-- Fitur Teams (multi-tenant)
-
-> **Catatan:** Pilih `--teams` jika aplikasi butuh multi-organisasi. Hapus flag tersebut jika tidak perlu.
-
-#### Opsi B — Laravel Breeze (Ringan & Simpel)
-
-Cocok jika hanya butuh autentikasi dasar tanpa fitur tambahan.
-
-```bash
-composer require laravel/breeze --dev
-php artisan breeze:install blade
-
-npm install && npm run build
-php artisan migrate
-```
+The `IsAdmin` middleware protects all admin routes, returning a `403` for unauthorized users.
 
 ---
 
-### 🎛️ Admin Panel UI
+## 🌐 Routes Overview
 
-#### Opsi A — Filament (Direkomendasikan)
-
-Admin panel modern berbasis Livewire, sangat powerful dan mudah dikustomisasi.
-
-```bash
-composer require filament/filament:"^3.3" -W
-php artisan filament:install --panels
-php artisan make:filament-user
-```
-
-Akses panel di: **http://localhost:8000/admin**
-
-#### Opsi B — Custom UI dengan Alpine.js
-
-Untuk UI admin custom menggunakan Blade + Tailwind + Alpine.js:
-
-```bash
-npm install alpinejs
-```
-
-Tambahkan di `resources/js/app.js`:
-```js
-import Alpine from 'alpinejs'
-window.Alpine = Alpine
-Alpine.start()
-```
+| Method | URI | Name | Middleware |
+|--------|-----|------|------------|
+| GET | `/` | — | Redirects based on auth |
+| GET | `/login` | `login` | `guest` |
+| POST | `/login` | — | `guest` |
+| GET | `/register` | `register` | `guest` |
+| POST | `/register` | — | `guest` |
+| GET | `/forgot-password` | `password.request` | `guest` |
+| POST | `/forgot-password` | `password.email` | `guest` |
+| GET | `/reset-password/{token}` | `password.reset` | `guest` |
+| POST | `/reset-password` | `password.update` | `guest` |
+| POST | `/logout` | `logout` | `auth` |
+| GET | `/dashboard` | `dashboard` | `auth` |
+| GET | `/admin/dashboard` | `admin.dashboard` | `auth`, `admin` |
 
 ---
 
-### 📊 Fitur Dashboard
-
-#### Chart & Visualisasi Data
-
-```bash
-npm install chart.js
-```
-
-#### Tabel Interaktif
-
-```bash
-# Jika pakai Filament, sudah termasuk
-# Jika custom, gunakan:
-npm install datatables.net-dt
-```
-
----
-
-### 🛡️ Keamanan Tambahan
-
-```bash
-# Rate limiting & proteksi sudah built-in di Laravel 12
-
-# Untuk audit log aktivitas user:
-composer require spatie/laravel-activitylog
-
-# Untuk manajemen roles & permissions:
-composer require spatie/laravel-permission
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
-php artisan migrate
-```
-
----
-
-### 🐛 Development Tools
-
-```bash
-# Debug bar (wajib untuk development)
-composer require barryvdh/laravel-debugbar --dev
-
-# IDE helper (autocomplete di PHPStorm/VSCode)
-composer require barryvdh/laravel-ide-helper --dev
-php artisan ide-helper:generate
-```
-
----
-
-## 📁 Struktur Project
-
-```
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   └── Middleware/
-│   └── Models/
-├── database/
-│   ├── migrations/
-│   └── seeders/
-├── resources/
-│   ├── css/
-│   ├── js/
-│   └── views/
-├── routes/
-│   ├── web.php
-│   └── api.php
-└── tests/
-```
-
----
-
-## ⚙️ Stack yang Digunakan
-
-| Teknologi | Versi | Keterangan |
-|-----------|-------|------------|
-| Laravel | 12.x | PHP Framework |
-| Tailwind CSS | 4.x | Utility-first CSS |
-| Vite | 6.x | Asset bundler |
-| Axios | 1.x | HTTP client |
-
----
-
-## 🔧 Perubahan yang Disarankan di `composer.json`
-
-Ganti `minimum-stability` dari `dev` ke `stable` untuk lingkungan production:
-
-```json
-"minimum-stability": "stable"
-```
-
----
-
-## 🧪 Menjalankan Tests
+## 🧪 Testing
 
 ```bash
 php artisan test
-
-# Dengan coverage
-php artisan test --coverage
 ```
+
+Tests are located in `tests/` directory using PHPUnit.
 
 ---
 
-## 📝 Lisensi
+## 📄 License
 
-[MIT](LICENSE)
+Distributed under the [MIT License](LICENSE).
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+---
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<div align="center">
+  <sub>Built with ❤️ using <a href="https://laravel.com">Laravel</a> + <a href="https://startbootstrap.com/theme/sb-admin-2">SB Admin 2</a></sub>
+  <br>
+  <sub>© 2026 — Template Admin</sub>
+</div>

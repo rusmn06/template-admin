@@ -62,7 +62,7 @@ class AuthController extends Controller
 
         // 2. Attempt Login (Coba login)
         // Auth::attempt akan mencari user di DB & verifikasi password (hash check)
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
 
             // Regenerate session untuk keamanan (mencegah session fixation attack)
             $request->session()->regenerate();

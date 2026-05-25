@@ -51,9 +51,11 @@
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="position-relative">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">3+</span>
+                </span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -68,7 +70,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
+                        <div class="small text-gray-500">{{ now()->subDays(5)->format('F j, Y') }}</div>
                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
                     </div>
                 </a>
@@ -79,7 +81,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
+                        <div class="small text-gray-500">{{ now()->subDays(10)->format('F j, Y') }}</div>
                         $290.29 has been deposited into your account!
                     </div>
                 </a>
@@ -90,7 +92,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 2, 2019</div>
+                        <div class="small text-gray-500">{{ now()->subDays(15)->format('F j, Y') }}</div>
                         Spending Alert: We've noticed unusually high spending for your account.
                     </div>
                 </a>
@@ -102,9 +104,11 @@
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
+                <span class="position-relative">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <!-- Counter - Messages -->
+                    <span class="badge badge-danger badge-counter">7</span>
+                </span>
             </a>
             <!-- Dropdown - Messages -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -121,7 +125,7 @@
                     <div class="font-weight-bold">
                         <div class="text-truncate">Hi there! I am wondering if you can help me with a
                             problem I've been having.</div>
-                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                        <div class="small text-gray-500">{{ now()->subMinutes(30)->format('g a') }}</div>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -133,7 +137,7 @@
                     <div>
                         <div class="text-truncate">I have the photos that you ordered last month, how
                             would you like them sent to you?</div>
-                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                        <div class="small text-gray-500">{{ now()->subDays(1)->format('g a') }}</div>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -145,7 +149,7 @@
                     <div>
                         <div class="text-truncate">Last month's report looks great, I am very happy with
                             the progress so far, keep up the good work!</div>
-                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                        <div class="small text-gray-500">{{ now()->subDays(2)->format('g a') }}</div>
                     </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -157,7 +161,7 @@
                     <div>
                         <div class="text-truncate">Am I a good boy? The reason I ask is because someone
                             told me that people say this to all dogs, even if they aren't good...</div>
-                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                        <div class="small text-gray-500">{{ now()->subWeeks(1)->format('F j') }}</div>
                     </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -170,9 +174,9 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name ?? 'User' }}</span>
                 <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg">
+                    src="{{ auth()->user()->avatar ?? asset('assets/sb-admin-2/img/undraw_profile.svg') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
